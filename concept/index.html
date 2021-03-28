@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.png">
+  
+  <title>Pair Programming AI Concept - Pair Programming AI</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Pair Programming AI Concept";
+    var mkdocs_page_input_path = "concept.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-115963779-2', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Pair Programming AI</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Pair Programming AI Concept</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#background">Background</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#our-goal">Our Goal</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#concept">Concept</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#approach-to-realize-pair-programing-ai-concept">Approach to realize Pair Programing AI Concept</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developers/">Contributors</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Pair Programming AI</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Pair Programming AI Concept</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="pair-programming-ai-concept">Pair Programming AI Concept</h1>
+<!--
+Pair Programming AIというコンセプトについてご紹介します．
+-->
+<p>We introduce the Pair Programming AI concept.</p>
+<h3 id="background">Background</h3>
+<!--
+現在，コンピュータが組み込まれている製品（例. 家電製品，スマートフォン，自動車など）は増え続けています．これらの製品を動かす上で重要な要素は，コンピュータを制御するソフトウェアです．ソフトウェアは複雑かつ大規模なものになりつつあり，ソフトウェア開発者が不足していると言われています．そのような状況で，現場のソフトウェア開発者は様々な苦悩を抱えています．以下にその一例を紹介します．
+
+* 前任者からプロジェクトを引き継いだけれど，仕様書や設計書の内容が不十分で，ソースコードの処理内容が理解できない．
+* そもそも，仕様書などのドキュメントが存在せず，ソースコードしかない．
+* スキルを持った開発者が足りないし，納期までの日数も限られている．
+-->
+
+<p>Today, the number of products (home appliances, smart phones, cars, etc.) with built-in computers continues to increase. The software that controls the computers is critical to running these products. Software is becoming increasingly complex and large-scale, and it is said that there is a shortage of software developers. In such a situation, software developers in the field are facing various difficulties.
+The following is an example.</p>
+<ul>
+<li>I have taken over a project from my predecessor, but the specifications and design documents are insufficient and I cannot understand the source code.</li>
+<li>There are no specifications or other documentation, only source code.</li>
+<li>The number of skilled developers is limited, and the number of days until delivery is limited.</li>
+</ul>
+<h3 id="our-goal">Our Goal</h3>
+<!--
+このような状況において，ソフトウェア開発を「短期間」で「開発者の負担を少なく」したい．そして，開発者が創造的な作業に集中できるような環境にしたい．
+
+目的を達成するにあたって，「ペアプログラミング」という開発手法に注目している．ペアプログラミングは2人の開発者で1つのソフトウェアを開発するといった手法である．この手法によって開発されたソフトウェアは高い品質が確保されやすいが，一方で開発費用は増加する．これに対して，我々は過去の成果物から熟練の開発者のノウハウを抽出して提供する「ペアプログラミングAI」の実現を目指している．
+-->
+<p>Our goal is to make it possible to develop software efficiently in a short time with less burden on developers.We also want to create an environment where developers can concentrate on their creative work.</p>
+<p>To achieve this goal, we are focusing on a development method called "pair programming". Pair programming is a method in which two developers work together to develop a single piece of software. The software developed by this method tends to be of high quality, but the development cost increases. Therefore, we aim to realize the "Pair Programming AI" that extracts and provides the know-how of professional developers from specifications, source code and so on.</p>
+<p><img alt="PairProgrammingAIConcept" src="../img/concept/concept_overview.png" /></p>
+<h3 id="concept">Concept</h3>
+<!--
+まるでソフトウェア開発に長けた経験者が隣にいて手助けしてくれるように，「ペアプログラミングAI」はソフトウェアの設計や実装，検証などを支援してくれる．以下にペアプログラミングAIに持たせたいスキルを示している．
+
+1. コードリーディング：プログラムの記述内容を理解できる
+2. コーディング：プログラミングに関する知見を有し，コーディングを支援できる
+3. 開発者の行動や思考：開発者の開発スタイルを把握し，見落としがちなポイントを見つけて助言できる
+
+ペアプログラミングAIはペアプログラミングに比べて費用面も安価であり，AIであるがゆえに気軽に相談しやすいといったメリットがあると考えている．
+-->
+<p>The "pair programming AI" can assist in the design, implementation, and verification of software, just as if an experienced software developer were standing next to you to help you. The following is a list of skills of the pair programming AI.</p>
+<ol>
+<li>Code Reading: understand what the program is writing.</li>
+<li>Coding: assists coding by having knowledge about programming.</li>
+<li>Developer behavior and thinking: Understand the developer's development style and be able to identify and advise on points that are often overlooked.</li>
+</ol>
+<p>We think that pair programming AI has the advantage of being less costly and more readily available than pair programming.</p>
+<h3 id="approach-to-realize-pair-programing-ai-concept">Approach to realize Pair Programing AI Concept</h3>
+<!--
+過去のソフトウェア関連物（仕様書や設計書，ソースコードなど）から知見を抽出し，加工・整理し，開発者に活用しやすい形式で提供します．
+-->
+<p>As shown in the figure below, the basic approach of Pair Programming AI is to extract knowledge from software specifications, design documents, and source code, process and organize them, and provide them to developers in an easy-to-use method.
+<img alt="Approach" src="../img/concept/technology_overview.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../developers/" class="btn btn-neutral float-right" title="Contributors">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2021 Masashi Nishimoto. All Rights Reserved.</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../developers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
