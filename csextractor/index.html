@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.png">
+  
+  <title>1. CSExtractor - Pair Programming AI</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "1. CSExtractor";
+    var mkdocs_page_input_path = "csextractor.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-115963779-2', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Pair Programming AI</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../concept/">Pair Programming AI Concept</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../prototype/">Prototype Tools</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">1. CSExtractor</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-overview">1. Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-approach">2. Approach</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-architecture">3. Architecture</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-parse-the-program">How to parse the program</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-generate-cs-graph-and-extract-a-set-of-statements">How to generate CS Graph and extract a set of statements</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-demo-application">4. Demo Application</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#demo-applications-screenshot">Demo Application's Screenshot</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developers/">Contributors</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Pair Programming AI</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>1. CSExtractor</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="csextractor">CSExtractor</h1>
+<h2 id="1-overview">1. Overview</h2>
+<!--CSExtractor (CodeSnippet Extractor)は，ソースコード中から変数の依存関係に着目して，ある文（ステートメント）に対して関係のある他の文の集まりを抽出するツールです．CSExtractorではその文の集まりがある機能を表していると捉えています．この文の集まりがソースコードの記述内容を理解する際の手助けになることと考えています．
+
+Swift向けに実装したCSExtractorを以下に紹介します．
+-->
+<p>"CSExtractor (CodeSnippet Extractor)" is a tool that extracts a set of statements from the source code, focusing on the dependencies of variables.
+The tool considers that the set of statements represents a functionality. We believe that the set of statements will help you understand the source code.</p>
+<p>This page introduces the CSExtractor for source code written in the Swift language.</p>
+<h2 id="2-approach">2. Approach</h2>
+<!--
+次のような文の集合がコード理解に役立つのではないかと考えている．
+
+* 対象ステートメントの操作対象となる変数が同じように操作されている文
+* 操作対象となる変数の定義が行われている文
+* 上記の文で参照されている他の変数についての定義文や参照箇所の文
+
+なお，操作対象となる変数とは対象ステートメントの種類によって次のように定義している．
+
+* 代入文：左辺に現れる変数 (xxx.aaa = yyy -> xxx)
+* 関数呼び出し：関数適用される変数 (xxx.func(...) -> xxx)
+-->
+<p>We think that it would be helpful to understand the code if we could grasp the following statements as a set.</p>
+<ul>
+<li>A statement in which the <em>focus variable</em> of the target statement is being processed</li>
+<li>A definition statement for the <em>focus variable</em></li>
+<li>A definition and reference statements for other variables referenced in the above statements</li>
+</ul>
+<p>Note that the <em>focus variable</em> is defined as follows:</p>
+<ul>
+<li>Assignment statement: the variable that appears on the left side (e.g., xxx.aaa = yyy -&gt; xxx)</li>
+<li>Call function statement: variable to which the function is applied (e.g., xxx.func(...) -&gt; xxx)</li>
+</ul>
+<h3 id="example">Example</h3>
+<!--
+次の図中の対象ステートメント"label.text = "\\(self.count)""は，labelに対する操作である．
+labelについて同じように操作されている文やlabelの変数定義がなされる文などを把握することができれば，labelに対する操作全体を理解することにつながるかもしれない．
+これらの文で参照されている他変数の定義箇所や参照箇所なども合わせて把握することも理解につながるかもしれない．
+-->
+<p>The target statement <em>"label.text = "\(self.count)""</em>, is an operation on the variables of <em>label</em>. If you can grasp the other statements of the operation on <em>label</em> (e.g., <em>"label.text = "(self.count)""</em> in pushBtn function) and the definition statement of <em>label</em> (e.g., <em>"@IBOutlet weak var label: UILabel!"
+</em>), you may be able to understand the whole process on <em>label</em>. It may also be helpful to understand the definitions and references of other variables referred to in these statements (e.g., <em>"fileprivate var count = 0"</em>).</p>
+<p><img alt="example" src="../img/csextractor/example.png" /></p>
+<h2 id="3-architecture">3. Architecture</h2>
+<!--
+CSExtractorは与えられたステートメントやソースコードに対して構文解析を行って，変数の依存関係からCS Graphを作成する．そして，CS Graphに基づいて関係のある文の集まりを抽出する．
+-->
+<p>CSExtractor creates AST(Abstract Syntax Tree) by parsing statements and source code. It analyzes the dependencies of variables on the AST and generates a CS Graph. Then, it extracts a set of statements based on the CS Graph.</p>
+<ol>
+<li>Parsing the program</li>
+<li>Generating a graph of code snippet (CS graph) and extracting a set of statement</li>
+</ol>
+<p><img alt="architecture" src="../img/csextractor/csextractor_arch.png" /></p>
+<h3 id="how-to-parse-the-program">How to parse the program</h3>
+<!--
+ソースコードに対して構文解析を行ってAST(Abstract Syntax Tree)を生成する．
+ASTからデータの依存関係を解析して，CS Graphの生成に利用している．
+なお，本ツールの構文解析には[swift-syntax](https://github.com/apple/swift-syntax)を利用している．
+-->
+<p>The tool parses the source code and creates an AST. It analyzes the dependencies of the data on the AST and generates the CS Graph. The tool uses <a href="https://github.com/apple/swift-syntax">swift-syntax</a> for parsing.</p>
+<h3 id="how-to-generate-cs-graph-and-extract-a-set-of-statements">How to generate CS Graph and extract a set of statements</h3>
+<!--
+以下にCS Graphの生成と文集合の抽出を行うまでの流れを示す．
+
+1. 対象ステートメントに現れる変数のポインタ関係や引数関係，代入関係に基づき，CS Graphを構築する
+    - *label.text = "\\(self.count)"*がステートメント集合に追加される
+2. focus variableであるlabelの定義ステートメントを1.のCS Graphに組み込む
+    - *@IBOutlet weak var label: UILabel!*がステートメント集合に追加される
+3. focus variableへ処理が行われているステートメントをCS Graphに組み込む
+    - *label.text = "\(self.count)"* in pushBtn functionがステートメント集合に追加される
+4. 対象ステートメントで参照されているcount変数の定義ステートメントをCS Graphに組み込む
+    - *fileprivate var count = 0*がステートメント集合に追加される
+-->
+<p>The flow of generating the CS Graph and extracting a set of statements is shown below.</p>
+<ol>
+<li>CSExtractor constructs a CS Graph based on the pointer, argument, and assignment relationships of variables that appear in the target statement.<ul>
+<li><em>"label.text = "\(self.count)""</em> is added to the set of statements.</li>
+</ul>
+</li>
+<li>The tool adds the definition statement of the label, which is a focus variable, into the CS Graph.<ul>
+<li><em>"@IBOutlet weak var label: UILabel!"</em> is added to the set of statements.</li>
+</ul>
+</li>
+<li>The tool adds other statements of the focus variable to the CS graph.<ul>
+<li><em>"label.text = "(self.count)""</em> in pushBtn function is added to the set of statements.</li>
+</ul>
+</li>
+<li>The tool adds the definition statement of the count variable referenced in the target statement to the CS Graph.<ul>
+<li><em>"fileprivate var count = 0"</em> is added to the set of statements.</li>
+</ul>
+</li>
+</ol>
+<p><img alt="howtoextract" src="../img/csextractor/howtoextract.gif" /></p>
+<h2 id="4-demo-application">4. Demo Application</h2>
+<p><a href="https://demoapp-csextractservice.herokuapp.com/">DemoApp of CSExtactor for Swift</a></p>
+<p>Note: The demo app is running on heroku's free plan, so it is very slow.</p>
+<!--注意：アプリはherokuの無料枠で実行しており，動作速度は遅いです． -->
+<p><img alt="ovewview" src="../img/csextractor/demo_overview.png" /></p>
+<h3 id="demo-applications-screenshot">Demo Application's Screenshot</h3>
+<p><img alt="screenshot" src="../img/csextractor/demo_animation.gif" /></p>
+<!--
+## API Reference（Swagger）
+-->
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../developers/" class="btn btn-neutral float-right" title="Contributors">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../prototype/" class="btn btn-neutral" title="Prototype Tools"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2021 Masashi Nishimoto. All Rights Reserved.</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../prototype/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../developers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
